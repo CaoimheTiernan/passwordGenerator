@@ -1,11 +1,12 @@
-import java.awt.List;
+import java.util.ArrayList;
+import java.util.List;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Scanner;
 
 public class Dictionary {
-    private HashMap<Integer,List> listsByLength;
+    private HashMap<Integer,List<String>> listsByLength;
     public Dictionary(){
         listsByLength = new HashMap<>();
     }
@@ -17,7 +18,7 @@ public class Dictionary {
         while(scanner.hasNext()){
            String current = scanner.next();
            if(!listsByLength.containsKey(current.length())){
-               List temp = new List();
+               List<String> temp = new ArrayList<String>();
                temp.add(current);
                listsByLength.put(current.length(),temp);
            }
@@ -25,9 +26,12 @@ public class Dictionary {
                listsByLength.get(current.length()).add(current);
            }
         }
-
     }
 
+    public List<String> getWordsOfLength(int length)
+    {
+        return listsByLength.get(length);
+    }
 
 
 }
